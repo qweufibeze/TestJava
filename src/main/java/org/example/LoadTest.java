@@ -9,8 +9,7 @@ public class LoadTest {
 
     public static void main(String[] args) {
         //System.setProperty("selenium-chrome-driver-4.10.0.jar", "/home/balobanov/selenium-java-4.10.0/selenium-chrome-driver-4.10.0.jar");
-        // Запустить несколько потоков с тестами
-        int threads = 5;
+        int threads = 20;
         for (int i = 1; i <= threads; i++) {
             Thread thread = new Thread(() -> runTest());
             thread.start();
@@ -21,9 +20,7 @@ public class LoadTest {
         WebDriver driver = new ChromeDriver();
         try {
             driver.get("https://protei.ru/");
-            WebElement button = driver.findElement(By.id());
-            String buttonProtei = button
-            driver.
+            driver.navigate().refresh();
         } finally {
             driver.quit();
         }
