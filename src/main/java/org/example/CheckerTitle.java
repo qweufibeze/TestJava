@@ -14,6 +14,7 @@ public class CheckerTitle {
             System.out.println("Тест пройден: заголовок страницы содержит 'Example Domain'.");
         } else {
             System.out.println("Тест не пройден: заголовок страницы не содержит 'Example Domain'.");
+
         }
         driver.quit();
     }
