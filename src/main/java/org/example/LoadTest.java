@@ -21,6 +21,7 @@ public class LoadTest {
         try {
             driver.get("https://protei.ru/");
             driver.navigate().refresh();
+
         } finally {
             driver.quit();
         }
