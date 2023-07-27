@@ -9,7 +9,7 @@ public class LoadTest {
 
     public static void main(String[] args) {
         //System.setProperty("selenium-chrome-driver-4.10.0.jar", "/home/balobanov/selenium-java-4.10.0/selenium-chrome-driver-4.10.0.jar");
-        int threads = 20;
+        int threads = 2;
         for (int i = 1; i <= threads; i++) {
             Thread thread = new Thread(() -> runTest());
             thread.start();

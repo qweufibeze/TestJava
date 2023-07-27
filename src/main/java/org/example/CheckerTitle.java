@@ -8,12 +8,12 @@ public class CheckerTitle {
     public static void main(String[] args) {
         //System.setProperty("selenium-chrome-driver-4.10.0.jar", "/home/balobanov/selenium-java-4.10.0/selenium-chrome-driver-4.10.0.jar");
         WebDriver driver = new ChromeDriver();
-        driver.get("https://www.example.com");
+        driver.get("https://my.tretyakov.ru/app/");
         String pageTitle = driver.getTitle();
-        if (pageTitle.contains("Example Domaвin")) {
-            System.out.println("Тест пройден: заголовок страницы содержит 'Example Domain'.");
+        if (pageTitle.contains("Моя Третьяковка")) {
+            System.out.println("Тест пройден");
         } else {
-            System.out.println("Тест не пройден: заголовок страницы не содержит 'Example Domain'.");
+            System.out.println("Тест не пройден");
 
         }
         driver.quit();
