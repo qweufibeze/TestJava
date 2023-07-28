@@ -8,7 +8,6 @@ import static org.junit.Assert.*;
 
 public class ComplexWebPageTest {
     public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
@@ -25,7 +24,6 @@ public class ComplexWebPageTest {
             passwordInput.sendKeys("your_password");
             loginButton.click();
 
-            /
             WebElement shopLink = driver.findElement(By.linkText("Магазин"));
             shopLink.click();
 
@@ -41,11 +39,9 @@ public class ComplexWebPageTest {
             WebElement searchButton = driver.findElement(By.id("search-button"));
             searchButton.click();
 
-
             WebElement product = driver.findElement(By.xpath("//div[contains(text(), 'телефон')]"));
             WebElement addToCartButton = product.findElement(By.xpath(".//button[contains(text(), 'Добавить в корзину')]"));
             addToCartButton.click();
-
 
             WebElement cartLink = driver.findElement(By.id("cart-link"));
             cartLink.click();
@@ -53,10 +49,8 @@ public class ComplexWebPageTest {
             WebElement cartItem = driver.findElement(By.xpath("//div[@class='cart-item'][1]"));
             assertTrue(cartItem.isDisplayed());
 
-
             WebElement checkoutButton = driver.findElement(By.xpath("//button[contains(text(), 'Оформить заказ')]"));
             checkoutButton.click();
-
 
             WebElement orderConfirmationMessage = driver.findElement(By.className("order-confirmation-message"));
             assertTrue(orderConfirmationMessage.isDisplayed());
