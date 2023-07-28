@@ -4,18 +4,14 @@ package org.example;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class CheckerTitle {
-    public static void main(String[] args) {
-        //System.setProperty("selenium-chrome-driver-4.10.0.jar", "/home/balobanov/selenium-java-4.10.0/selenium-chrome-driver-4.10.0.jar");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://my.tretyakov.ru/app/");
-        String pageTitle = driver.getTitle();
-        if (pageTitle.contains("Моя Третьяковка")) {
-            System.out.println("Тест пройден");
-        } else {
-            System.out.println("Тест не пройден");
+public class CheckerTitle extends MainMethod {
 
-        }
-        driver.quit();
+    static final WebDriver driverChrome = new ChromeDriver();
+    static final String BASE_URL = "https://my.tretyakov.ru/app/";
+    public static void main(String[] args) {
+        MainMethod mainMethod = new MainMethod();
+        mainMethod.setUp(driverChrome,BASE_URL);
+        mainMethod.geTitleOfWebsite(driverChrome, BASE_URL, "Моя Третьяковка");
+        mainMethod.tearDown(driverChrome,BASE_URL);
     }
 }
