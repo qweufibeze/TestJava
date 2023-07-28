@@ -27,12 +27,8 @@ public class UserActivityTest {
         //ищем определенный UI
         WebElement toEnterLogPassIcon = driver.findElement(By.className("header-round-btn"));
         WebElement toEnterLogPassIconText = driver.findElement(By.className("header-entrance link-default--white"));
-
-
         // проверяем наличие действия
         toEnterLogPassIcon.click();
-
-
     }
 }
 
