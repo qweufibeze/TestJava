@@ -12,7 +12,7 @@ public class MainMethod {
         driverChrome.quit();
     }
 
-    void geTitleOfWebsite(WebDriver driverChrome, String findWord){
+    void getTitleOfWebsite(WebDriver driverChrome, String findWord){
         String pageTitle = driverChrome.getTitle();
         if (pageTitle.contains(findWord)) {
             System.out.println("Тест пройден");

@@ -9,7 +9,7 @@ public class CheckerTitle extends MainMethod {
     public static void main(String[] args) {
         MainMethod mainMethod = new MainMethod();
         mainMethod.setUp(driverChrome,BASE_URL);
-        mainMethod.geTitleOfWebsite(driverChrome, "Моя Третьяковка");
+        mainMethod.getTitleOfWebsite(driverChrome, "Моя Третьяковка");
         mainMethod.tearDown(driverChrome,BASE_URL);
     }
 }
