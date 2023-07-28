@@ -1,7 +1,6 @@
 package org.example;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class MainMethod {
     public void setUp(WebDriver driverChrome, String baseURL){
@@ -13,7 +12,7 @@ public class MainMethod {
         driverChrome.quit();
     }
 
-    void geTitleOfWebsite(WebDriver driverChrome, String website, String findWord){
+    void geTitleOfWebsite(WebDriver driverChrome, String findWord){
         String pageTitle = driverChrome.getTitle();
         if (pageTitle.contains(findWord)) {
             System.out.println("Тест пройден");
