@@ -1,12 +1,15 @@
 package org.example;
 
+import net.bytebuddy.dynamic.loading.ByteArrayClassLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -17,8 +20,6 @@ public class UserAuthorizationTest extends MainMethod{
     public static void main(String[] args) {
         authorizationWayIcon();
     }
-
-
     public static void authorizationWayIcon(){
         MainMethod mainMethod = new MainMethod();
         mainMethod.setUp(driverChrome,BASE_URL);
@@ -29,14 +30,7 @@ public class UserAuthorizationTest extends MainMethod{
             authorizationIcon.click();
         }
 
-        //Вводим логин и пароль
         enterLogPass();
-
-        //Нажимаем на кнопку "ВОЙТИ"
-        WebElement enterButton = driverChrome.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/button"));
-        if(enterButton.isDisplayed()) {
-            enterButton.click();
-        }
 
         mainMethod.setUp(driverChrome,driverChrome.getCurrentUrl());
         WebElement secondIconButton = driverChrome.findElement(By.xpath("/html/body/div/div/div/div[2]/header/div/div/div[2]/a[1]"));
@@ -44,25 +38,15 @@ public class UserAuthorizationTest extends MainMethod{
             secondIconButton.click();
         }
 
-        WebElement exitButton = driverChrome.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/nav/ul/li[4]/a"));
+        WebDriverWait wait = new WebDriverWait(driverChrome,Duration.ofMillis(500L));
+        WebElement exitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/div/div/div[2]/div/div/nav/ul/li[4]/a")));
         exitButton.click();
 
-
-
-//        //Логинимся с помощью кнопки "Войти"
-//        mainMethod.setUp(driverChrome,BASE_URL);
-//        WebElement authorizationWord = driverChrome.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/div[1]"));
-//        authorizationWord.click();
-//
-//        //Вводим логин и пароль
-//        loginInput.click();
-//        loginInput.sendKeys("qweufibeze@gmail.com");
-//        passwordInput.click();
-//        passwordInput.sendKeys("65ufibezedeZ+-");
-//
-//        //Нажимаем на кнопку "ВОЙТИ"
-//        enterButton.click();
-//        mainMethod.tearDown(driverChrome,BASE_URL);
+        WebElement authorizationWord = driverChrome.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/div[1]"));
+        if(authorizationWord.isDisplayed()) {
+            authorizationWord.click();
+        }
+        enterLogPass();
     }
 
     public static void enterLogPass(){
@@ -72,12 +56,16 @@ public class UserAuthorizationTest extends MainMethod{
         }
         loginInput.sendKeys("qweufibeze@gmail.com");
 
-
         WebElement passwordInput = driverChrome.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/div[2]/label"));
         if(passwordInput.isDisplayed()) {
             passwordInput.click();
         }
         passwordInput.sendKeys("65ufibezedeZ+-");
+
+        WebElement enterButton = driverChrome.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/button"));
+        if(enterButton.isDisplayed()) {
+            enterButton.click();
+        }
     }
 }
 
