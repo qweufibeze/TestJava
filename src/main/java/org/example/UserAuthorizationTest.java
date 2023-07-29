@@ -1,7 +1,5 @@
 package org.example;
 
-import net.bytebuddy.dynamic.loading.ByteArrayClassLoader;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,14 +13,13 @@ public class UserAuthorizationTest extends MainMethod{
     static final MainMethod mainMethod = new MainMethod();
     static final WebDriver driverChrome = new ChromeDriver();
     static final String BASE_URL = "https://my.tretyakov.ru/app/";
-    @Test
+
     public static void main(String[] args) {
         authorizationWayIcon();
         getBackToMainMenu();
         authorizationWayWord();
         getBackToMainMenu();
     }
-    @Test
     public static void authorizationWayIcon(){
         mainMethod.setUp(driverChrome,BASE_URL);
         //Нажимаем на иконку авторизации
@@ -32,7 +29,6 @@ public class UserAuthorizationTest extends MainMethod{
         }
         enterLogPass();
     }
-    @Test
     public static void authorizationWayWord(){
         mainMethod.setUp(driverChrome,BASE_URL);
         WebElement authorizationWord = driverChrome.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/div[1]"));
@@ -41,7 +37,6 @@ public class UserAuthorizationTest extends MainMethod{
         }
         enterLogPass();
     }
-    @Test
     public static void enterLogPass(){
         WebElement loginInput = driverChrome.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/div[1]/label"));
         if(loginInput.isDisplayed()) {
@@ -60,7 +55,6 @@ public class UserAuthorizationTest extends MainMethod{
             enterButton.click();
         }
     }
-    @Test
     public static void getBackToMainMenu(){
         //Возвращение к MainMenu
         mainMethod.setUp(driverChrome,driverChrome.getCurrentUrl());
