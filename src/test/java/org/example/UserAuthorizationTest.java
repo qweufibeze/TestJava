@@ -1,6 +1,5 @@
 package org.example;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,23 +7,66 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.time.Duration;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNull.notNullValue;
 
 public class UserAuthorizationTest extends MainMethod{
      final static MainMethod mainMethod = new MainMethod();
      final static WebDriver driverChromeIcon = new ChromeDriver();
      final static WebDriver driverChromeWord = new ChromeDriver();
      final static String BASE_URL = "https://my.tretyakov.ru/app/";
+     final static String AUTH_URL = "https://my.tretyakov.ru/api/auth/";
 
     // Проверяем авторизацию по иконке и по слову на сайте "https://my.tretyakov.ru/app/" параллельно друг другу
 
     public static void main(String[] args) {
         runTestAuthorization();
+    }
+
+    //Не получится запустить тест, нет токена
+    @Test
+    public void testSuccessfulAuthorization() {
+        // Задаем базовый урл
+        RestAssured.baseURI = "https://my.tretyakov.ru";
+
+        String email = "qweufibeze@gmail.com";
+        String password = "65ufibezedeZ+-";
+
+        String requestBody = "{ \"email\": \"" + email + "\", \"password\": \"" + password + "\" }";
+
+        given()
+                .contentType(ContentType.JSON)
+                .header(":authority", "https://my.tretyakov.ru")
+                .header(":method", "POST")
+                .header(":path", "/api/auth/")
+                .header(":scheme", "https")
+                .header("Accept", "application/json, text/plain, */*")
+                .header("Accept-Encoding", "gzip, deflate, br")
+                .header("Accept-Language", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7")
+                .header("Content-Length", "58")
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .header("Cookie", "BITRIX_SM_SALE_UID=0; BITRIX_SM_LOGIN=qweufibeze%40gmail.com; PHPSESSID=2chntr0eSZQpkN253kTLuMCJJUWSfga2; BITRIX_SM_SOUND_LOGIN_PLAYED=Y")
+                .header("Origin", "https://my.tretyakov.ru")
+                .header("Referer", "https://my.tretyakov.ru/app/")
+                .header("Sec-Ch-Ua", "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\"")
+                .header("Sec-Ch-Ua-Mobile", "?0")
+                .header("Sec-Ch-Ua-Platform", "\"Linux\"")
+                .header("Sec-Fetch-Dest", "empty")
+                .header("Sec-Fetch-Mode", "cors")
+                .header("Sec-Fetch-Site", "same-origin")
+                .header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
+                .body(requestBody)
+                .when()
+                .post("/api/auth/")
+                .then()
+                .statusCode(200)
+                .body("status", equalTo("success"));
     }
     public static void runTestAuthorization() {
          Runnable iconAuthorizationTask = () -> authorizationWayIcon();
