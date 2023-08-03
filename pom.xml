@@ -15,11 +15,10 @@
     </properties>
 
     <dependencies>
-        <!-- Зависимость для Selenium WebDriver -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>LATEST</version> <!-- Укажите здесь последнюю доступную версию Selenium -->
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -30,7 +29,14 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>LATEST</version> <!-- Укажите актуальную версию RestAssured -->
+            <version>LATEST</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>LATEST</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
