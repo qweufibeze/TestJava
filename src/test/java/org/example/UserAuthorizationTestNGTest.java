@@ -1,31 +1,24 @@
 package org.example;
 
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
+import static org.example.UserAuthorizationTest.driverChromeIcon;
+
 public class UserAuthorizationTestNGTest {
 
-    @Test
+    @Test()
     public void testAuthorizationWayIcon() {
         UserAuthorizationTest.authorizationWayIcon();
-        // Add assertions here to check the expected behavior of the method
-        // For example, check that the user is successfully authorized using the icon
-        // You can use Selenium WebDriver methods and assertions to verify the behavior
-        // For instance:
-        // Assert.assertEquals(driverChromeIcon.getCurrentUrl(), "EXPECTED_URL_AFTER_AUTH");
-        // Assert.assertTrue(someElementOnThePage.isDisplayed());
+            driverChromeIcon.getCurrentUrl().contains("https://my.tretyakov.ru/app/profile/detail");
+            Assert.assertTrue(driverChromeIcon.getCurrentUrl().contains("https://my.tretyakov.ru/app/profile/detail"));
     }
 
     @Test
     public void testAuthorizationWayWord() {
         UserAuthorizationTest.authorizationWayWord();
-        // Add assertions here to check the expected behavior of the method
-        // For example, check that the user is successfully authorized using the word
-        // You can use Selenium WebDriver methods and assertions to verify the behavior
-        // For instance:
-        // Assert.assertEquals(driverChromeWord.getCurrentUrl(), "EXPECTED_URL_AFTER_AUTH");
-        // Assert.assertTrue(someElementOnThePage.isDisplayed());
+        Assert.assertTrue(driverChromeIcon.getCurrentUrl().contains("https://my.tretyakov.ru/app/profile/detail"));
     }
-
 }
 
