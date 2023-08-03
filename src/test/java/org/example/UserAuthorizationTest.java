@@ -29,10 +29,13 @@ public class UserAuthorizationTest extends MainMethod{
         runTestAuthorization();
     }
 
-    //Не получится запустить тест, нет токена
+//        "status": false,
+//            "error": {
+//        "code": "FILL_REQUIRED_FIELDS",
+//                "message": "Заполните обязательные поля."
+//    }
 //    @Test
 //    public void testSuccessfulAuthorization() {
-//        // Задаем базовый урл
 //        RestAssured.baseURI = "https://my.tretyakov.ru";
 //
 //        String email = "qweufibeze@gmail.com";
@@ -49,22 +52,11 @@ public class UserAuthorizationTest extends MainMethod{
 //                .header("Accept", "application/json, text/plain, */*")
 //                .header("Accept-Encoding", "gzip, deflate, br")
 //                .header("Accept-Language", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7")
-//                .header("Content-Length", "58")
 //                .header("Content-Type", "application/x-www-form-urlencoded")
-//                .header("Cookie", "BITRIX_SM_SALE_UID=0; BITRIX_SM_LOGIN=qweufibeze%40gmail.com; PHPSESSID=2chntr0eSZQpkN253kTLuMCJJUWSfga2; BITRIX_SM_SOUND_LOGIN_PLAYED=Y")
-//                .header("Origin", "https://my.tretyakov.ru")
-//                .header("Referer", "https://my.tretyakov.ru/app/")
-//                .header("Sec-Ch-Ua", "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\"")
-//                .header("Sec-Ch-Ua-Mobile", "?0")
-//                .header("Sec-Ch-Ua-Platform", "\"Linux\"")
-//                .header("Sec-Fetch-Dest", "empty")
-//                .header("Sec-Fetch-Mode", "cors")
-//                .header("Sec-Fetch-Site", "same-origin")
-//                .header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
 //                .body(requestBody)
 //                .when()
-//                .post("/api/auth/")
-//                .then()
+//                .post("https://my.tretyakov.ru/api/auth/")
+//                .then().log().all()
 //                .statusCode(200)
 //                .body("status", equalTo("success"));
 //    }
