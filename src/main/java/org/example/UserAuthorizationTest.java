@@ -23,8 +23,8 @@ public class UserAuthorizationTest extends MainMethod{
     }
 
     public static void runTestAuthorization() {
-         Runnable iconAuthorizationTask = () -> authorizationWayIcon();
-         Runnable wordAuthorizationTask = () -> authorizationWayWord();
+         Runnable iconAuthorizationTask = UserAuthorizationTest::authorizationWayIcon;
+         Runnable wordAuthorizationTask = UserAuthorizationTest::authorizationWayWord;
 
          // Создаем два потока и запускаем методы в них
          Thread iconThread = new Thread(iconAuthorizationTask);
@@ -74,6 +74,7 @@ public class UserAuthorizationTest extends MainMethod{
             Assert.assertTrue(true);
             mainMethod.tearDown(driverChromeIcon, AUTH_URL);
             mainMethod.tearDown(driverChromeWord, AUTH_URL);
+
         }
     }
 }
