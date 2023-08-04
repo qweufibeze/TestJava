@@ -74,7 +74,6 @@ public class UserAuthorizationTest extends MainMethod{
             Assert.assertTrue(true);
             mainMethod.tearDown(driverChromeIcon, AUTH_URL);
             mainMethod.tearDown(driverChromeWord, AUTH_URL);
-
         }
     }
 }
