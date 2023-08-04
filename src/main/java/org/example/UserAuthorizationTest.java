@@ -77,7 +77,8 @@ public class UserAuthorizationTest extends MainMethod{
         runTestAuthorization();
         if(driverChromeIcon.getCurrentUrl().contains(AUTH_URL) && driverChromeWord.getCurrentUrl().contains(AUTH_URL)){
             Assert.assertTrue(true);
-            mainMethod.tearDown(driverChromeIcon, driverChromeIcon.getCurrentUrl());
+            mainMethod.tearDown(driverChromeIcon, AUTH_URL);
+            mainMethod.tearDown(driverChromeWord, AUTH_URL);
         }
     }
 }
