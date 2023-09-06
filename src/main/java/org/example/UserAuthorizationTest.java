@@ -1,13 +1,10 @@
 package org.example;
 
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 
 public class UserAuthorizationTest extends MainMethod{
      final static MainMethod mainMethod = new MainMethod();
@@ -54,13 +51,13 @@ public class UserAuthorizationTest extends MainMethod{
         if(loginInput.isDisplayed()) {
             loginInput.click();
         }
-        loginInput.sendKeys("qweufibeze@gmail.com");
+        loginInput.sendKeys("alexandrobol@yandex.ru");
 
         WebElement passwordInput = webDriver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/div[2]/label"));
         if(passwordInput.isDisplayed()) {
             passwordInput.click();
         }
-        passwordInput.sendKeys("65ufibezedeZ+-");
+        passwordInput.sendKeys("12345678910");
 
         WebElement enterButton = webDriver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/button"));
         if(enterButton.isDisplayed()) {
