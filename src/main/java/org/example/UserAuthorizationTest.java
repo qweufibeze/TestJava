@@ -54,13 +54,13 @@ public class UserAuthorizationTest extends MainMethod{
         if(loginInput.isDisplayed()) {
             loginInput.click();
         }
-        loginInput.sendKeys("qweufibeze@gmail.com");
+        loginInput.sendKeys("alexandrobol@yandex.ru");
 
         WebElement passwordInput = webDriver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/div[2]/label"));
         if(passwordInput.isDisplayed()) {
             passwordInput.click();
         }
-        passwordInput.sendKeys("65ufibezedeZ+-");
+        passwordInput.sendKeys("12345678910");
 
         WebElement enterButton = webDriver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/form/button"));
         if(enterButton.isDisplayed()) {
