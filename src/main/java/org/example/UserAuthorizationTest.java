@@ -1,13 +1,10 @@
 package org.example;
 
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 
 public class UserAuthorizationTest extends MainMethod{
      final static MainMethod mainMethod = new MainMethod();
