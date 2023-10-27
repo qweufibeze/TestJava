@@ -11,13 +11,4 @@ public class MainMethod {
     public void tearDown(WebDriver driverChrome, String baseURL) {
         driverChrome.quit();
     }
-
-    void getTitleOfWebsite(WebDriver driverChrome, String findWord){
-        String pageTitle = driverChrome.getTitle();
-        if (pageTitle.contains(findWord)) {
-            System.out.println("Тест пройден");
-        } else {
-            System.out.println("Тест не пройден");
-        }
-    }
 }

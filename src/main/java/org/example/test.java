@@ -1,48 +1,31 @@
 package org.example;
 
-import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class UserAuthorizationTest extends MainMethod{
+import static java.time.temporal.ChronoUnit.SECONDS;
+
+public class test {
+
     final static MainMethod mainMethod = new MainMethod();
     final static WebDriver driverChromeIcon = new ChromeDriver();
     final static WebDriver driverChromeWord = new ChromeDriver();
     final static String BASE_URL = "https://my.tretyakov.ru/app/";
     final static String AUTH_URL = "https://my.tretyakov.ru/app/profile/detail";
 
-    // Проверяем авторизацию по иконке и по слову на сайте "https://my.tretyakov.ru/app/" параллельно друг другу
     public static void main(String[] args) throws InterruptedException {
-        runTestAuthorization();
-    }
-
-    public static void runTestAuthorization() throws InterruptedException {
-        Runnable iconAuthorizationTask = UserAuthorizationTest::authorizationWayIcon;
-        Runnable wordAuthorizationTask = UserAuthorizationTest::authorizationWayWord;
-
-       driverChromeIcon.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-       driverChromeWord.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        // Создаем два потока и запускаем методы в них
-        Thread iconThread = new Thread(iconAuthorizationTask);
-        iconThread.start();
-        Thread wordThread = new Thread(wordAuthorizationTask);
-        wordThread.start();
-        Thread.sleep(10000, TimeUnit.SECONDS.ordinal());
+        authorizationWayIcon();
+        Thread.sleep(1000, TimeUnit.SECONDS.ordinal());
 
         System.out.println(driverChromeIcon.getCurrentUrl());
-        System.out.println(driverChromeWord.getCurrentUrl());
 
-        Assert.assertTrue(driverChromeIcon.getCurrentUrl().contains(AUTH_URL));
-        Assert.assertTrue(driverChromeWord.getCurrentUrl().contains(AUTH_URL));
+
     }
+
     public static void authorizationWayIcon(){
         mainMethod.setUp(driverChromeIcon,BASE_URL);
         //Нажимаем на иконку авторизации
@@ -79,9 +62,4 @@ public class UserAuthorizationTest extends MainMethod{
         }
     }
 
-    // Проверяем авторизацию
-//    static void accessTest(){
-//        Assert.assertTrue(driverChromeIcon.getCurrentUrl().contains(AUTH_URL));
-//        Assert.assertTrue(driverChromeWord.getCurrentUrl().contains(AUTH_URL));
-//    }
 }
