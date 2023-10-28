@@ -24,7 +24,6 @@ public class UserAuthorizationTest extends MainMethod {
         driverChromeIcon.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driverChromeWord.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
-        // Создаем два потока и запускаем методы в них
         Thread iconThread = new Thread(() -> authorizationWayIcon(driverChromeIcon));
         Thread wordThread = new Thread(() -> authorizationWayWord(driverChromeWord));
 
