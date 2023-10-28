@@ -8,18 +8,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class UserAuthorizationTest extends MainMethod {
-    static String iconThreadUrl;
-    static String wordThreadUrl;
-    final static WebDriver driverChromeIcon = new ChromeDriver();
-    final static WebDriver driverChromeWord = new ChromeDriver();
-    static WebDriverWait waitIcon = new WebDriverWait(driverChromeIcon, Duration.ofSeconds(15));
-    static WebDriverWait waitWord = new WebDriverWait(driverChromeWord, Duration.ofSeconds(15));
-    public void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         String[] urls = runTestAuthorization();
         System.out.println("Icon Thread URL: " + urls[0]);
         System.out.println("Word Thread URL: " + urls[1]);
     }
-    public String[] runTestAuthorization() throws InterruptedException {
+    public static String[] runTestAuthorization() throws InterruptedException {
+        String wordThreadUrl;
+        String iconThreadUrl;
+
+        WebDriver driverChromeIcon = new ChromeDriver();
+        WebDriver driverChromeWord = new ChromeDriver();
         driverChromeIcon.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driverChromeWord.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
@@ -41,21 +40,23 @@ public class UserAuthorizationTest extends MainMethod {
         return new String[]{iconThreadUrl, wordThreadUrl};
     }
     public static void authorizationWayIcon(WebDriver driver) {
-        setUp(driverChromeIcon, BASE_URL);
+        setUp(driver, BASE_URL);
         WebElement authorizationIcon = driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/a"));
         if (authorizationIcon.isDisplayed()) {
             authorizationIcon.click();
         }
         enterLogPass(driver);
+        WebDriverWait waitIcon = new WebDriverWait(driver, Duration.ofSeconds(15));
         waitIcon.until(ExpectedConditions.urlToBe(AUTH_URL));
     }
     public static void authorizationWayWord(WebDriver driver) {
-        setUp(driverChromeWord, BASE_URL);
+        setUp(driver, BASE_URL);
         WebElement authorizationWord = driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/div[1]"));
         if (authorizationWord.isDisplayed()) {
             authorizationWord.click();
         }
         enterLogPass(driver);
+        WebDriverWait waitWord = new WebDriverWait(driver, Duration.ofSeconds(15));
         waitWord.until(ExpectedConditions.urlToBe(AUTH_URL));
     }
     public static void enterLogPass(WebDriver webDriver) {
