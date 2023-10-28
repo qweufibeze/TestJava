@@ -14,13 +14,12 @@ public class UserAuthorizationTest extends MainMethod {
     final static WebDriver driverChromeWord = new ChromeDriver();
     static WebDriverWait waitIcon = new WebDriverWait(driverChromeIcon, Duration.ofSeconds(15));
     static WebDriverWait waitWord = new WebDriverWait(driverChromeWord, Duration.ofSeconds(15));
-    public static void main(String[] args) throws InterruptedException {
+    public void main(String[] args) throws InterruptedException {
         String[] urls = runTestAuthorization();
         System.out.println("Icon Thread URL: " + urls[0]);
         System.out.println("Word Thread URL: " + urls[1]);
     }
-    public static String[] runTestAuthorization() throws InterruptedException {
-
+    public String[] runTestAuthorization() throws InterruptedException {
         driverChromeIcon.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driverChromeWord.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 

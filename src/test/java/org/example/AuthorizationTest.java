@@ -1,11 +1,10 @@
 package org.example;
 
-import org.junit.Assert;
+
 import org.junit.Test;
+import static org.junit.Assert.*;
 
-import static org.example.UserAuthorizationTest.*;
-
-public class AuthorizationTest extends Assert {
+public class AuthorizationTest extends UserAuthorizationTest{
 
     final static String AUTH_URL = "https://my.tretyakov.ru/app/profile/detail";
     @Test
