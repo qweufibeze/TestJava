@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import static org.example.test.mainMethod;
 
 
-public class UserAuthorizationTest {
+public class UserAuthorizationTest extends MainMethod {
     final static String BASE_URL = "https://my.tretyakov.ru/app/";
     final static String AUTH_URL = "https://my.tretyakov.ru/app/profile/detail";
 
@@ -53,11 +53,14 @@ public class UserAuthorizationTest {
         iconThreadUrl = driverChromeIcon.getCurrentUrl();
         wordThreadUrl = driverChromeIcon.getCurrentUrl();
 
+        tearDown(driverChromeIcon);
+        tearDown(driverChromeWord);
+
         return new String[]{iconThreadUrl, wordThreadUrl};
     }
 
     public static void authorizationWayIcon(WebDriver driver) {
-        driver.get(BASE_URL);
+        setUp(driverChromeIcon, BASE_URL);
         // Нажимаем на иконку авторизации
         WebElement authorizationIcon = driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/a"));
         if (authorizationIcon.isDisplayed()) {
@@ -68,7 +71,7 @@ public class UserAuthorizationTest {
     }
 
     public static void authorizationWayWord(WebDriver driver) {
-        driver.get(BASE_URL);
+        setUp(driverChromeWord, BASE_URL);
         WebElement authorizationWord = driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/div[1]"));
         if (authorizationWord.isDisplayed()) {
             authorizationWord.click();
