@@ -2,11 +2,12 @@ package org.example;
 
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
 import static org.junit.Assert.*;
 
 public class AuthorizationTest extends UserAuthorizationTest{
-
-    final static String AUTH_URL = "https://my.tretyakov.ru/app/profile/detail";
+    @Category(AuthorizationTests.class)
     @Test
     public void accessAuth() throws InterruptedException {
         String[] urls = runTestAuthorization();
