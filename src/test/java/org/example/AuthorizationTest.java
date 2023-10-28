@@ -5,7 +5,9 @@ import org.junit.Test;
 
 import static org.example.UserAuthorizationTest.*;
 
-public class AutorizationTest {
+public class AuthorizationTest extends Assert {
+
+    final static String AUTH_URL = "https://my.tretyakov.ru/app/profile/detail";
     @Test
     public void accessAuth() throws InterruptedException {
         String[] urls = runTestAuthorization();
@@ -14,10 +16,10 @@ public class AutorizationTest {
         System.out.println("Word Thread URL: " + urls[1]);
 
         // Проверка значений из массива
-        if (urls[0].equals("https://my.tretyakov.ru/app/profile/detail") && urls[1].equals("https://my.tretyakov.ru/app/profile/detail")) {
-            Assert.assertTrue(true);
+        if (urls[0].equals(AUTH_URL) && urls[1].equals(AUTH_URL)) {
+            assertTrue(true);
         } else {
-            Assert.fail();
+            fail();
         }
     }
 }

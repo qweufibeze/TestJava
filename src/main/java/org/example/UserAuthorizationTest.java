@@ -11,6 +11,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import static org.example.test.mainMethod;
+
 
 public class UserAuthorizationTest {
     final static String BASE_URL = "https://my.tretyakov.ru/app/";
@@ -26,8 +28,8 @@ public class UserAuthorizationTest {
         WebDriver driverChromeIcon = new ChromeDriver();
         WebDriver driverChromeWord = new ChromeDriver();
 
-        driverChromeIcon.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driverChromeWord.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driverChromeIcon.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driverChromeWord.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         // Создаем два потока и запускаем методы в них
         Thread iconThread = new Thread(() -> authorizationWayIcon(driverChromeIcon));
@@ -39,13 +41,15 @@ public class UserAuthorizationTest {
         iconThread.join();
         wordThread.join();
 
-        // Получаем URL перед закрытием драйверов
-        String iconThreadUrl = driverChromeIcon.getCurrentUrl();
-        String wordThreadUrl = driverChromeWord.getCurrentUrl();
+        String iconThreadUrl = null;
+        String wordThreadUrl = null;
 
-        // Закрываем драйверы после использования
-        driverChromeIcon.quit();
-        driverChromeWord.quit();
+        if (driverChromeIcon.getCurrentUrl().contains(AUTH_URL) && driverChromeWord.getCurrentUrl().contains(AUTH_URL)){
+             iconThreadUrl = driverChromeIcon.getCurrentUrl();
+             wordThreadUrl = driverChromeWord.getCurrentUrl();
+            driverChromeIcon.quit();
+            driverChromeWord.quit();
+        }
 
         return new String[]{iconThreadUrl, wordThreadUrl};
     }
