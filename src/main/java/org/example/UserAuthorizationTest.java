@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +20,15 @@ public class UserAuthorizationTest {
     final static String BASE_URL = "https://my.tretyakov.ru/app/";
     final static String AUTH_URL = "https://my.tretyakov.ru/app/profile/detail";
 
+    static String iconThreadUrl;
+    static String wordThreadUrl;
+
+    final static WebDriver driverChromeIcon = new ChromeDriver();
+    final static WebDriver driverChromeWord = new ChromeDriver();
+
+    static WebDriverWait waitIcon = new WebDriverWait(driverChromeIcon, Duration.ofSeconds(15));
+    static WebDriverWait waitWord = new WebDriverWait(driverChromeWord, Duration.ofSeconds(15));
+
     public static void main(String[] args) throws InterruptedException {
         String[] urls = runTestAuthorization();
         System.out.println("Icon Thread URL: " + urls[0]);
@@ -25,11 +36,9 @@ public class UserAuthorizationTest {
     }
 
     public static String[] runTestAuthorization() throws InterruptedException {
-        WebDriver driverChromeIcon = new ChromeDriver();
-        WebDriver driverChromeWord = new ChromeDriver();
 
-        driverChromeIcon.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driverChromeWord.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driverChromeIcon.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driverChromeWord.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
         // Создаем два потока и запускаем методы в них
         Thread iconThread = new Thread(() -> authorizationWayIcon(driverChromeIcon));
@@ -41,15 +50,8 @@ public class UserAuthorizationTest {
         iconThread.join();
         wordThread.join();
 
-        String iconThreadUrl = null;
-        String wordThreadUrl = null;
-
-        if (driverChromeIcon.getCurrentUrl().contains(AUTH_URL) && driverChromeWord.getCurrentUrl().contains(AUTH_URL)){
-             iconThreadUrl = driverChromeIcon.getCurrentUrl();
-             wordThreadUrl = driverChromeWord.getCurrentUrl();
-            driverChromeIcon.quit();
-            driverChromeWord.quit();
-        }
+        iconThreadUrl = driverChromeIcon.getCurrentUrl();
+        wordThreadUrl = driverChromeIcon.getCurrentUrl();
 
         return new String[]{iconThreadUrl, wordThreadUrl};
     }
@@ -62,6 +64,7 @@ public class UserAuthorizationTest {
             authorizationIcon.click();
         }
         enterLogPass(driver);
+        waitIcon.until(ExpectedConditions.urlToBe(AUTH_URL));
     }
 
     public static void authorizationWayWord(WebDriver driver) {
@@ -71,6 +74,7 @@ public class UserAuthorizationTest {
             authorizationWord.click();
         }
         enterLogPass(driver);
+        waitWord.until(ExpectedConditions.urlToBe(AUTH_URL));
     }
 
     public static void enterLogPass(WebDriver webDriver) {
