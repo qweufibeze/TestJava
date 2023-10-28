@@ -44,7 +44,6 @@ public class UserAuthorizationTest extends MainMethod {
     }
     public static void authorizationWayIcon(WebDriver driver) {
         setUp(driverChromeIcon, BASE_URL);
-        // Нажимаем на иконку авторизации
         WebElement authorizationIcon = driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/a"));
         if (authorizationIcon.isDisplayed()) {
             authorizationIcon.click();
