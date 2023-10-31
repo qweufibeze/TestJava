@@ -1,4 +1,6 @@
 package org.example;
 
-public interface AuthorizationTests {}
+public interface AuthorizationTests {
+
+}
 

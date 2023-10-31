@@ -4,17 +4,16 @@ package org.example;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import static org.example.GetAttributeParams.getParamsOfView;
 import static org.junit.Assert.*;
 import static org.example.CheckCSSStyle.*;
 
-public class GetParamTest  {
+public class CheckCSSStyleTest  {
     @Category(AuthorizationTests.class)
     @Test
-    public void accessGetParam() {
-        String param = getParamsOfView();
+    public void accessGetParamCSS() {
+        String param = getStyleCSS();
 
-        if (param.contains("ОБЩАЯ СУММА ПОЖЕРТВОВАНИЙ В ПРОЕКТЕ")) {
+        if (param.contains("Montserrat, sans-serif")) {
             assertTrue(true);
         }else{
             fail();

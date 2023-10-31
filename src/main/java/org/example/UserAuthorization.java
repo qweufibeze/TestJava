@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-public class UserAuthorizationTest extends MainMethod {
+public class UserAuthorization extends MainMethod {
     public static void main(String[] args) throws InterruptedException {
         String[] urls = runTestAuthorization();
         System.out.println("Icon Thread URL: " + urls[0]);
