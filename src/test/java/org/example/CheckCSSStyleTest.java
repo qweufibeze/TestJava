@@ -1,13 +1,11 @@
 package org.example;
 
-
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-
 import static org.junit.Assert.*;
 
 
-public class CheckCSSStyleTest extends CheckCSSStyle  {
+public class CheckCSSStyleTest extends CheckCSSStyle {
     @Category(AuthorizationTests.class)
     @Test
     public void accessGetParamCSS() {

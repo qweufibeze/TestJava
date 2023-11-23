@@ -11,7 +11,6 @@ public class GetAttributeParams extends UserAuthorization {
     public static void main(String[] args) {
         getParamsOfView();
     }
-
     public static String getParamsOfView(){
         String params;
         WebDriver driver = new ChromeDriver();
