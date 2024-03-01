@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 import java.time.Duration;
 
 public class UserAuthorization extends MainMethod {
@@ -13,6 +14,7 @@ public class UserAuthorization extends MainMethod {
     static WebDriver driverChromeWord = new ChromeDriver();
 
     @Test
+
     public void authorizationWayIcon() {
         setUp(driverChromeIcon, BASE_URL);
         WebElement authorizationIcon = driverChromeIcon.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/a"));
@@ -25,6 +27,7 @@ public class UserAuthorization extends MainMethod {
         assert driverChromeIcon.getCurrentUrl().equals(AUTH_URL);
     }
     @Test
+
     public void authorizationWayWord() {
         setUp(driverChromeWord, BASE_URL);
         WebElement authorizationWord = driverChromeWord.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/header/div/div/div[2]/div[1]"));
