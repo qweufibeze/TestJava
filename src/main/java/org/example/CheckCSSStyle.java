@@ -18,7 +18,6 @@ public class CheckCSSStyle extends UserAuthorization {
         String params;
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        authorizationWayIcon(driver);
         WebElement textElement = driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div/div[2]/div[1]/div[4]/div[1]"));
         params = textElement.getCssValue("font-family");
         System.out.println(params);
