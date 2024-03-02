@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class CheckCSSStyle extends UserAuthorization {
+public class CheckCSSStyle extends TestUserAuthorization {
 
     public static void main(String[] args) {
         getStyleCSS();
@@ -23,7 +23,7 @@ public class CheckCSSStyle extends UserAuthorization {
         System.out.println(params);
         Point point = textElement.getLocation();
         System.out.println(point);
-        UserAuthorization.tearDown(driver);
+        TestUserAuthorization.tearDown(driver);
         return params;
     }
 }
